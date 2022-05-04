@@ -36,11 +36,20 @@ function fetchBreeds() {
         for (const dog in data.message) {
             data.message[dog].length === 0 ? makeLi(dog, 'dog-breeds', 'parent-li') : makeLiWithNestedUl(data.message, dog, 'dog-breeds')
         }
+        handleColors()
     })
 }
 function handleColors() {
-    const liArray = Array.from(document.getElementsByTagName('li'))
-    
+    //Got some questions here
+    const parentLiArray = Array.from(document.querySelectorAll('.parent-li'))
+    const childLiArray = Array.from(document.querySelectorAll('.child-li'))
+    const ulArray = Array.from(document.querySelectorAll('ul'))
+    ulArray.map(ul => ul.style.color = 'black')
+    parentLiArray.map(li => {
+        li.addEventListener('click', e => {
+            e.target.style.color === 'blue' ? e.target.style.color = 'black' : e.target.style.color = 'blue'
+        })
+    })
 }
 
 function handleFetches() {
