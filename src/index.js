@@ -43,12 +43,15 @@ function fetchBreeds() {
 function handleColors() {
     //Got some questions here
     const parentLiArray = Array.from(document.querySelectorAll('.parent-li'))
-    const childLiArray = Array.from(document.querySelectorAll('.child-li'))
     const ulArray = Array.from(document.querySelectorAll('ul'))
     ulArray.map(ul => ul.style.color = 'black')
     parentLiArray.map(li => {
         li.addEventListener('click', e => {
-            e.target.style.color === 'blue' ? e.target.style.color = 'black' : e.target.style.color = 'blue'
+            if (e.target.parentElement === document.getElementById('dog-breeds')) {
+                e.target.style.color === 'blue' ? e.target.style.color = 'black' : e.target.style.color = 'blue'
+            } else {
+                e.target.style.color === 'red' ? e.target.style.color = 'black' : e.target.style.color = 'red'
+            }
         })
     })
 }
