@@ -37,6 +37,7 @@ function fetchBreeds() {
             data.message[dog].length === 0 ? makeLi(dog, 'dog-breeds', 'parent-li') : makeLiWithNestedUl(data.message, dog, 'dog-breeds')
         }
         handleColors()
+        handleDropdown()
     })
 }
 function handleColors() {
@@ -49,6 +50,36 @@ function handleColors() {
         li.addEventListener('click', e => {
             e.target.style.color === 'blue' ? e.target.style.color = 'black' : e.target.style.color = 'blue'
         })
+    })
+}
+function handleDropdown() {
+    const breedDropdown = document.getElementById('breed-dropdown')
+    const defaultChoice = document.createElement('option')
+    defaultChoice.textContent = 'all'
+    defaultChoice.value = ''
+    defaultChoice.selected = true
+    breedDropdown.prepend(defaultChoice)
+    const dogList = Array.from(document.querySelectorAll('.parent-li'))
+    const nonADogs = dogList.filter(dog => dog.textContent[0] !== 'a')
+    const nonBDogs = dogList.filter(dog => dog.textContent[0] !== 'b')
+    const nonCDogs = dogList.filter(dog => dog.textContent[0] !== 'c')
+    const nonDDogs = dogList.filter(dog => dog.textContent[0] !== 'd')
+    breedDropdown.addEventListener('change', e => {
+        if (e.target.value === 'a') {
+            dogList.map(dog => dog.style.display = '')
+            nonADogs.map(dog => dog.style.display = 'none')
+        } else if (e.target.value === 'b') {
+            dogList.map(dog => dog.style.display = '')
+            nonBDogs.map(dog => dog.style.display = 'none')
+        } else if (e.target.value === 'c') {
+            dogList.map(dog => dog.style.display = '')
+            nonCDogs.map(dog => dog.style.display = 'none')
+        } else if (e.target.value === 'd') {
+            dogList.map(dog => dog.style.display = '')
+            nonDDogs.map(dog => dog.style.display = 'none')
+        } else {
+            dogList.map(dog => dog.style.display = '')
+        }
     })
 }
 
